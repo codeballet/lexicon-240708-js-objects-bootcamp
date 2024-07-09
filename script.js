@@ -57,19 +57,19 @@
 // Letter Frequency //
 //////////////////////
 
-// function letterFrequency(str) {
-//     let frequency = {};
-//     for (let letter of str) {
-//         if (frequency[letter]) {
-//             // letter already exists, increment count
-//             frequency[letter] += 1;
-//         } else {
-//             // letter not recorded, start counting
-//             frequency[letter] = 1;
-//         }
-//     }
-//     return frequency;
-// }
+function letterFrequency(str) {
+    let frequency = {};
+    for (letter of str) {
+        if (frequency[letter]) {
+            // letter already exists, increment count
+            frequency[letter] += 1;
+        } else {
+            // letter not recorded, start counting
+            frequency[letter] = 1;
+        }
+    }
+    return frequency;
+}
 
 // let stringToParse = "ni talar bra latin";
 // console.log(`\nLetter frequency in: "${stringToParse}"`);
@@ -81,26 +81,42 @@
 
 // Imported global variable 'users'
 
-function filterByCountry(users, country) {
-    let filteredUsers = [];
-    users.forEach((user) => {
-        if (user.nat === country) {
-            filteredUsers.push(user);
-        }
-    });
-    return filteredUsers;
+// Filter by Country
+// function filterByCountry(users, country) {
+//     let filteredUsers = [];
+//     users.forEach((user) => {
+//         if (user.nat === country) {
+//             filteredUsers.push(user);
+//         }
+//     });
+//     return filteredUsers;
+// }
+
+// country = "DE";
+// console.log(`Filtered list of users with nationality "${country}":`);
+// console.log(filterByCountry(users, country));
+
+// Get list of emails
+// function getEmails(users) {
+//     let userEmails = [];
+//     users.forEach((user) => {
+//         userEmails.push(user.email);
+//     });
+//     return userEmails;
+// }
+
+// Reformat emails
+
+function newEmails(users) {
+    let emailList = [];
+    for (user of users) {
+        let lastName = user.name.last.toLowerCase().replace(/\s/g, "");
+        let firstName = user.name.first.toLowerCase().replace(/\s/g, "");
+        let nat = user.nat.toLowerCase();
+        let email = `${lastName}.${firstName}@evilcorp.${nat}`;
+        emailList.push(email);
+    }
+    return emailList;
 }
 
-country = "DE";
-console.log(`Filtered list of users with nationality "${country}":`);
-console.log(filterByCountry(users, country));
-
-function getEmails(users) {
-    let userEmails = [];
-    users.forEach((user) => {
-        userEmails.push(user.email);
-    });
-    return userEmails;
-}
-
-console.log("User emails:", getEmails(users));
+console.log(newEmails(users));
