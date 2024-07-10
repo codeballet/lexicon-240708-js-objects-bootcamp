@@ -107,16 +107,12 @@ function letterFrequency(str) {
 
 // Reformat emails
 
-function newEmails(users) {
-    let emailList = [];
-    for (user of users) {
-        let lastName = user.name.last.toLowerCase().replace(/\s/g, "");
-        let firstName = user.name.first.toLowerCase().replace(/\s/g, "");
-        let nat = user.nat.toLowerCase();
-        let email = `${lastName}.${firstName}@evilcorp.${nat}`;
-        emailList.push(email);
-    }
-    return emailList;
+function newEmail(user) {
+    return `${user.name.last}.${user.name.first}@evilcorp.${user.nat}`
+        .toLowerCase()
+        .replace(/\s/g, "");
 }
 
-console.log(newEmails(users));
+for (user of users) {
+    console.log(newEmail(user));
+}
